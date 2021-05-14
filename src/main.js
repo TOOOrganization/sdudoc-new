@@ -48,6 +48,11 @@ Vue.prototype.$http = axios
 import qs from 'qs'
 Vue.prototype.qs=qs
 
+// 引入 element-ui
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

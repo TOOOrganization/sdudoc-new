@@ -12,6 +12,16 @@
           <span class="hidden-sm-and-down">SDUDOC检索系统</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
+        <span v-if="$store.state.user!=null" class="hidden-sm-and-down">你好，{{$store.state.JSON_user.nickname}}</span>
+        <span v-if="$store.state.user!=null">
+          <v-btn
+          text
+          @click="exit"
+        >
+            退出
+          </v-btn>
+        </span>
+        <v-spacer></v-spacer>
         <v-btn-toggle
           tile
           color="yellow accent-4"
@@ -19,7 +29,7 @@
           v-model = $store.state.menu_text
         >
           <v-btn value="index">
-            <span class="hidden-sm-and-down">首页</span>
+            <span class="hidden-sm-and-down" style="font-size: 16px">首页</span>
 
             <v-icon right>
               mdi-file-find
@@ -27,7 +37,7 @@
           </v-btn>
 
           <v-btn value="recharge">
-            <span class="hidden-sm-and-down">积分兑换</span>
+            <span class="hidden-sm-and-down" style="font-size: 16px">积分兑换</span>
 
             <v-icon right>
               mdi-credit-card-plus
@@ -35,7 +45,7 @@
           </v-btn>
 
           <v-btn value="user">
-            <span class="hidden-sm-and-down">用户信息</span>
+            <span class="hidden-sm-and-down" style="font-size: 16px">用户信息</span>
 
             <v-icon right>
               mdi-account
@@ -52,11 +62,15 @@ export default {
   name: "menu",
   data () {
     return {
-
     }
   },
+  mounted() {
+  },
   methods: {
-
+    exit(){
+      localStorage.removeItem('user')
+      this.$router.go(0)
+    }
   }
 }
 </script>

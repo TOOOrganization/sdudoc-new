@@ -1,14 +1,32 @@
 <template>
   <v-app>
   <div id="app">
-    <router-view/>
+    <router-view v-if="isRouterAlive"/>
   </div>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  provide(){
+    return{
+      reload: this.reload
+    }
+  },
+  data(){
+    return {
+      isRouterAlive: true
+    }
+  },
+  methods: {
+    reload(){
+      this.isRouterAlive = false
+      this.$nextTick(function(){
+        this.isRouterAlive = true
+      })
+    }
+  }
 }
 </script>
 
@@ -16,6 +34,5 @@ export default {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
 }
 </style>

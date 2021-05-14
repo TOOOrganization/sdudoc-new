@@ -1,11 +1,5 @@
 <template>
   <div class="form-group" style="display: flex;">
-    <div style="width: 170px">
-      <v-text-field
-        label="请输入验证码"
-        prepend-icon="mdi-qrcode-edit" v-model="code" counter="4"
-      ></v-text-field>
-    </div>
     <div class="login-code" @click="refreshCode">
       <!--验证码组件-->
       <Identify :identifyCode="identifyCode"></Identify>
@@ -15,22 +9,23 @@
 
 <script>
 import Identify  from '../component/indentify'
+import store from '../../store/index'
 export default {
   name: "CAPTCHA",
   components: {Identify},
   mounted(){
-    this.identifyCode = "";
+    this.identifyCode = '';
     this.makeCode(this.identifyCodes, 4);
   },
   created() {
-    this.identifyCode="";
+    this.identifyCode = '';
     this.makeCode(this.identifyCode,4)
   },
   data(){
     return{
       identifyCodes: "1234567890",
-      identifyCode: "",
-      code:"",//text框输入的验证码
+      identifyCode: '',
+      code: '',//text框输入的验证码
     }
   },
   methods:{
@@ -49,9 +44,8 @@ export default {
           this.randomNum(0, this.identifyCodes.length)
           ];
       }
-      console.log(this.identifyCode);
+      store.state.identifyCode = this.identifyCode
     },
-
   }
 }
 </script>

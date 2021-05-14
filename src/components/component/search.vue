@@ -4,14 +4,14 @@
       <v-col cols="2">
         <v-radio-group class="radio" v-model="mode">
           <v-radio class="radio1"
-            value="author"
+            value="articleAuthor"
           >
             <template v-slot:label>
               <div><p style="color: blue">作者</p></div>
             </template>
           </v-radio>
           <v-radio class="radio1"
-            value="origin"
+            value="content"
           >
             <template v-slot:label>
               <div><p style="color: blue">原文</p></div>
@@ -19,9 +19,10 @@
           </v-radio>
           <v-radio class="radio1"
             value="translation"
+                   disabled
           >
             <template v-slot:label>
-              <div><p style="color: blue">译文</p></div>
+              <div><p style="color:gray">译文</p></div>
             </template>
           </v-radio>
           <v-radio class="radio1"
@@ -73,16 +74,16 @@ export default {
   name: "search",
   data () {
     return {
-      mode: "origin",
+      mode: "content",
       keyword: ""
     }
   },
   methods:{
     modes(mode){
       switch (mode){
-        case "origin":
+        case "content":
           return "请输入原文进行搜索"
-        case "author":
+        case "articleAuthor":
           return "请输入作者进行搜索"
         case "translation":
           return "请输入译文进行搜索"
@@ -93,23 +94,27 @@ export default {
     search(){
       this.$http({
         method: 'post',
-        url: '/api/search-engine/solr/query_head',
+        url: '/api/search-engine/solr/query',
         data: qs.stringify({
-          corename: "sms_article_head",
+          corename: "dms_article",
           field: this.mode,
           keyword: this.keyword
         })
       })
         .then(res => {
           if (res.data.length != 0) {
-            store.state.search_article = res.data
-            console.log(store.state.search_article)
+            window.localStorage.setItem('search_keyword',this.keyword)
+            console.log(res.data)
+            window.localStorage.setItem('search_value',JSON.stringify(res.data))
+            console.log(window.localStorage.getItem('search_value'))
+            window.localStorage.setItem('search_mode',this.mode)
+            console.log(window.localStorage.getItem('search_mode'))
             let routeData = this.$router.resolve({
               name: "article"
             });
             window.open(routeData.href, '_blank');
           } else {
-            console.log("失败");
+            this.$message.error('缺乏响应数据');
             return false;
           }
         });

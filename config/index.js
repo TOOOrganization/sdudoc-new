@@ -6,19 +6,18 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://211.87.232.198:8080', // 接口地址
+        target: 'http://211.87.232.198:8081', // 接口地址
         changeOrigin: true, // 是否跨域
         pathRewrite: {
-'^/api': ''
-},
-secure: false
-},
+          '^/api': '/'
+        },
+        secure: false
+      },
     },
 
     // Various Dev Server settings
@@ -53,6 +52,16 @@ secure: false
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    proxyTable: {
+      '/api': {
+        target: 'http://211.87.232.198:8081', // 接口地址
+        changeOrigin: true, // 是否跨域
+        pathRewrite: {
+          '^/api': '/'
+        },
+        secure: false
+      },
+    },
 
     /**
      * Source Maps
