@@ -19,7 +19,7 @@ export default {
   mounted() {
     this.$http({
       method: 'post',
-      url: '/api/search-engine/solr/getSVG',
+      url: 'http://211.87.232.198:8081/search-engine/solr/getSVG',
       data: qs.stringify({
         aid: "60975d6637ad8e7e7a329a9f",
         keyword: "李",

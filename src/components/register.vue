@@ -122,7 +122,7 @@ export default {
             }else {
               this.$http({
                 method: 'post',
-                url: '/api/search-engine/user/register',
+                url: 'http://211.87.232.198:8081/search-engine/user/register',
                 data: qs.stringify({
                   username: username,
                   password: password,
@@ -145,7 +145,7 @@ export default {
       this.content = this.seconds+'s后跳转界面'
       this.$http({
         method: 'post',
-        url: '/api/search-engine/user/login',
+        url: 'http://211.87.232.198:8081/search-engine/user/login',
         data: qs.stringify({
           username: username,
           password: password
