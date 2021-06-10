@@ -1,5 +1,7 @@
 <template>
-<div id="article">
+<div
+  id="article"
+>
   <v-app-bar
     app
     color="brown darken-1"
@@ -9,7 +11,9 @@
       style="width: 300px"
       class="ml-0 pl-4"
     >
-      <span class="hidden-sm-and-down">SDUDOC检索系统</span>
+      <span class="hidden-sm-and-down">
+        SDUDOC检索系统
+      </span>
     </v-toolbar-title>
   </v-app-bar>
   <v-content>
@@ -24,30 +28,82 @@
 
     >
       <v-card-text>
-        <div id="title" v-if="$store.state.search_mode=='title'" v-html="$options.filters.font_color(infos.title)"></div>
-        <div id="title1" v-if="$store.state.search_mode!='title'" v-html="infos.title"></div>
+        <div
+          id="title"
+          v-if="$store.state.search_mode=='title'"
+          v-html="$options.filters.font_color(infos.title)"
+        ></div>
+        <div id="title1"
+             v-if="$store.state.search_mode!='title'"
+             v-html="infos.title"
+        ></div>
         <!--        <div id="title">{{infos.title}}</div>-->
-        <div id="author">{{infos.articleAuthor}}</div>
-        <div id="xiangxi" class="text--primary" v-if="$store.state.search_mode=='content'"  v-html="$options.filters.ellipsis(infos.content)">
+        <div
+          id="author"
+        >
+          {{infos.articleAuthor}}
         </div>
-        <div id="xiangxi1" class="text--primary" v-if="$store.state.search_mode!='content'"  v-html="$options.filters.ellipsis1(infos.content)">
+        <div
+          id="xiangxi"
+          class="text--primary"
+          v-if="$store.state.search_mode=='content'"
+          v-html="$options.filters.ellipsis(infos.content)"
+        >
         </div>
-        <div id="dbn" style="color: blue">{{infos.dynasty}}&#12288&#12288&#12288{{infos.bookname}}</div>
+        <div
+          id="xiangxi1"
+             class="text--primary"
+          v-if="$store.state.search_mode!='content'"
+          v-html="$options.filters.ellipsis1(infos.content)"
+        >
+        </div>
+        <div
+          id="dbn" style="color: blue"
+        >
+          {{infos.dynasty}}&#12288&#12288&#12288{{infos.bookname}}
+        </div>
       </v-card-text>
     </v-card>
     <!-- 分页 -->
-    <div style="text-align: center;margin-top: 20px">
-      <el-pagination background layout="prev, pager, next" @current-change="pageChange" :page-size="pageSize"
+
+    <div
+      style="text-align: center;margin-top: 20px"
+    >
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-change="pageChange"
+        :page-size="pageSize"
                      :total="totalusers" />
     </div>
   </v-content>
 
-  <v-dialog v-model="dialog" width="1000">
-    <div style="display: flex">
-      <div style="width: 500px;background-color: white">
-        <div style="text-align: center;color: blue;font-size: 25px" v-if="$store.state.search_mode=='title'" v-html="$options.filters.font_color(detail.title)"></div>
-        <div style="text-align: center;color: blue;font-size: 25px" v-if="$store.state.search_mode!='title'" v-html="detail.title"></div>
-        <div style="margin:auto;max-width: 450px;max-height: 500px;">
+  <v-dialog
+    v-model="dialog"
+    width="1000"
+  >
+    <div
+      style="display: flex"
+    >
+      <div
+        style="width: 500px;background-color: white"
+      >
+        <div
+          style="text-align: center;color: blue;font-size: 25px"
+             v-if="$store.state.search_mode=='title'"
+             v-html="$options.filters.font_color(detail.title)"
+        ></div>
+        <div
+          style="text-align: center;color: blue;font-size: 25px"
+          v-if="$store.state.search_mode!='title'"
+          v-html="detail.title"
+        ></div>
+        <div
+          style="text-align: center;color: magenta"
+        ></div>
+        <div
+          style="margin:auto;max-width: 450px;max-height: 500px;"
+        >
         <strong
           color="black"
           v-if="$store.state.search_mode=='content'"
@@ -60,12 +116,16 @@
           ></strong>
         </div>
       </div>
-      <div style="width: 500px;background-color: white">
+      <div
+        style="width: 500px;background-color: white"
+      >
         <v-carousel
           hide-delimiter-background
           height="700"
         >
-          <template v-slot:prev="{ on, attrs }">
+          <template
+            v-slot:prev="{ on, attrs }"
+          >
             <v-btn
               color="secondary"
               v-bind="attrs"
@@ -73,7 +133,9 @@
               small
               fab
             >
-              <v-icon>mdi-arrow-left-bold</v-icon>
+              <v-icon>
+                mdi-arrow-left-bold
+              </v-icon>
             </v-btn>
           </template>
           <template v-slot:next="{ on, attrs }">
@@ -84,7 +146,9 @@
               small
               fab
             >
-              <v-icon>mdi-arrow-right-bold</v-icon>
+              <v-icon>
+                mdi-arrow-right-bold
+              </v-icon>
             </v-btn>
           </template>
           <v-carousel-item
@@ -92,7 +156,9 @@
             :key="i"
           >
 
-            <div v-html="svg[i-1]" >
+            <div
+              v-html="svg[i-1]"
+            >
               {{ svg[i-1] }}
             </div>
 
@@ -105,8 +171,9 @@
 </template>
 
 <script>
-import store from '../store/index'
+import store from '../../store'
 import qs from "qs";
+import saveSvgAsPng from "save-svg-as-png"
 export default {
   name: "article",
   filters:{
@@ -288,6 +355,11 @@ export default {
     this.getTaskList()
   },
   methods: {
+    pngtolocal(){
+      console.log('test')
+      let el = this.svg[0]
+      saveSvgAsPng.saveSvgAsPng(el, "图.png");
+    },
     //分页 pageChange当前页发生改变触发函数
     async pageChange(page) {
       this.startpage = page

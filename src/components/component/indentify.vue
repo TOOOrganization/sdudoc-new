@@ -1,6 +1,11 @@
 <template>
   <div class="s-canvas">
-    <canvas id="s-canvas" :width="contentWidth" :height="contentHeight"></canvas>
+    <canvas
+      id="scanvas"
+      ref="scanvas"
+      :width="contentWidth"
+      :height="contentHeight"
+    ></canvas>
   </div>
 </template>
 <script>
@@ -73,12 +78,16 @@ export default {
       return 'rgb(' + r + ',' + g + ',' + b + ')'
     },
     drawPic() {
-      let canvas = document.getElementById('s-canvas')
+      let canvas = this.$refs.scanvas
       let ctx = canvas.getContext('2d')
+
+      ctx.save()
       ctx.textBaseline = 'bottom'
       // 绘制背景
       ctx.fillStyle = this.randomColor(this.backgroundColorMin, this.backgroundColorMax)
+      ctx.clearRect(0, 0, this.contentWidth, this.contentHeight)
       ctx.fillRect(0, 0, this.contentWidth, this.contentHeight)
+      ctx.restore()
       // 绘制文字
       for (let i = 0; i < this.identifyCode.length; i++) {
         this.drawText(ctx, this.identifyCode[i], i)
@@ -86,7 +95,14 @@ export default {
       this.drawLine(ctx)
       this.drawDot(ctx)
     },
+    /**
+     *
+     * @param ctx
+     * @param txt
+     * @param i
+     */
     drawText(ctx, txt, i) {
+      ctx.save()
       ctx.fillStyle = this.randomColor(this.colorMin, this.colorMax)
       ctx.font = this.randomNum(this.fontSizeMin, this.fontSizeMax) + 'px SimHei'
       let x = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1))
@@ -99,9 +115,11 @@ export default {
       // 恢复坐标原点和旋转角度
       ctx.rotate(-deg * Math.PI / 180)
       ctx.translate(-x, -y)
+      ctx.restore()
     },
     drawLine(ctx) {
       // 绘制干扰线
+      ctx.save()
       for (let i = 0; i < 5; i++) {
         ctx.strokeStyle = this.randomColor(this.lineColorMin, this.lineColorMax)
         ctx.beginPath()
@@ -109,15 +127,18 @@ export default {
         ctx.lineTo(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight))
         ctx.stroke()
       }
+      ctx.restore()
     },
     drawDot(ctx) {
       // 绘制干扰点
+      ctx.save()
       for (let i = 0; i < 80; i++) {
         ctx.fillStyle = this.randomColor(0, 255)
         ctx.beginPath()
         ctx.arc(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight), 1, 0, 2 * Math.PI)
         ctx.fill()
       }
+      ctx.restore()
     }
   },
   watch: {

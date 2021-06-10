@@ -1,5 +1,7 @@
 <template>
-  <div id="menu">
+  <div
+    id="menu"
+  >
       <v-app-bar
         app
         color="brown darken-1"
@@ -9,11 +11,22 @@
           style="width: 300px"
           class="ml-0 pl-4"
         >
-          <span class="hidden-sm-and-down">SDUDOC检索系统</span>
+          <span
+            class="hidden-sm-and-down"
+          >
+            SDUDOC检索系统
+          </span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <span v-if="$store.state.user!=null" class="hidden-sm-and-down">你好，{{$store.state.JSON_user.nickname}}</span>
-        <span v-if="$store.state.user!=null">
+        <span
+          v-if="$store.state.user!=null"
+          class="hidden-sm-and-down"
+        >
+          你好，{{$store.state.JSON_user.nickname}}
+        </span>
+        <span
+          v-if="$store.state.user!=null"
+        >
           <v-btn
           text
           @click="exit"
@@ -28,24 +41,45 @@
           group
           v-model = $store.state.menu_text
         >
-          <v-btn value="index">
-            <span class="hidden-sm-and-down" style="font-size: 16px">首页</span>
+          <v-btn
+            value="index"
+          >
+            <span
+              class="hidden-sm-and-down"
+              style="font-size: 16px"
+            >
+              首页
+            </span>
 
             <v-icon right>
               mdi-file-find
             </v-icon>
           </v-btn>
 
-          <v-btn value="recharge">
-            <span class="hidden-sm-and-down" style="font-size: 16px">积分兑换</span>
+          <v-btn
+            value="recharge"
+          >
+            <span
+              class="hidden-sm-and-down"
+              style="font-size: 16px"
+            >
+              积分兑换
+            </span>
 
             <v-icon right>
               mdi-credit-card-plus
             </v-icon>
           </v-btn>
 
-          <v-btn value="user">
-            <span class="hidden-sm-and-down" style="font-size: 16px">用户信息</span>
+          <v-btn
+            value="user"
+          >
+            <span
+              class="hidden-sm-and-down"
+              style="font-size: 16px"
+            >
+              用户信息
+            </span>
 
             <v-icon right>
               mdi-account

@@ -1,6 +1,10 @@
 <template>
-<div id="login">
-  <v-col id="lo">
+<div
+  id="login"
+>
+  <v-col
+    id="lo"
+  >
     <v-text-field
       label="账号"
       prepend-icon="mdi-account-circle"
@@ -20,8 +24,12 @@
       label="请输入验证码"
       prepend-icon="mdi-qrcode-edit" v-model="code" counter="4"
     ></v-text-field>
-    <yx-identify style="margin-left:255px;margin-top: 20px;margin-bottom: 20px"></yx-identify>
-    <v-row style="margin-left: 200px">
+    <yx-identify
+      style="margin-left:255px;margin-top: 20px;margin-bottom: 20px"
+    ></yx-identify>
+    <v-row
+      style="margin-left: 200px"
+    >
       <v-btn
         text
         color="error"
@@ -117,4 +125,5 @@ export default {
   height: 350px;
   position: absolute;
 }
+
 </style>

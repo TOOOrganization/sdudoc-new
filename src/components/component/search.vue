@@ -1,48 +1,91 @@
 <template>
-  <div id="search">
+  <div
+    id="search"
+  >
     <v-row>
-      <v-col cols="2">
-        <v-radio-group class="radio" v-model="mode">
-          <v-radio class="radio1"
+      <v-col
+        cols="2"
+      >
+        <v-radio-group
+          class="radio"
+          v-model="mode"
+        >
+          <v-radio
+            class="radio1"
             value="articleAuthor"
           >
-            <template v-slot:label>
-              <div><p style="color: blue">作者</p></div>
+            <template
+              v-slot:label
+            >
+              <div>
+                <p style="color: blue">
+                  作者
+                </p>
+              </div>
             </template>
           </v-radio>
-          <v-radio class="radio1"
+          <v-radio
+            class="radio1"
             value="content"
           >
-            <template v-slot:label>
-              <div><p style="color: blue">原文</p></div>
+            <template
+              v-slot:label
+            >
+              <div>
+                <p style="color: blue">
+                  原文
+                </p>
+              </div>
             </template>
           </v-radio>
-          <v-radio class="radio1"
+          <v-radio
+            class="radio1"
             value="translation"
                    disabled
           >
-            <template v-slot:label>
-              <div><p style="color:gray">译文</p></div>
+            <template
+              v-slot:label
+            >
+              <div>
+                <p style="color:gray">
+                  译文
+                </p>
+              </div>
             </template>
           </v-radio>
-          <v-radio class="radio1"
+          <v-radio
+            class="radio1"
                    value="title"
           >
-            <template v-slot:label>
-              <div><p style="color: blue">标题</p></div>
+            <template
+              v-slot:label
+            >
+              <div>
+                <p style="color: blue">
+                  标题
+                </p>
+              </div>
             </template>
           </v-radio>
         </v-radio-group>
       </v-col>
-      <v-col cols="8">
+      <v-col
+        cols="8"
+      >
         <v-text-field
           style="margin-left: 25px;margin-top: 125px;margin-right: 25px;"
           prepend-icon="mdi-account-search"
           class="radio"
           v-model="keyword"
         >
-          <template v-slot:label>
-            <div><p style="color: blue;font-size: 20px">{{modes(mode)}}</p></div>
+          <template
+            v-slot:label
+          >
+            <div>
+              <p style="color: blue;font-size: 20px">
+                {{modes(mode)}}
+              </p>
+            </div>
           </template>
         </v-text-field>
       </v-col>
@@ -58,7 +101,9 @@
           rounded
           @click="search"
         >
-          <div style="font-size: 20px;color: blue">
+          <div
+            style="font-size: 20px;color: blue"
+          >
             查询
           </div>
         </v-btn>

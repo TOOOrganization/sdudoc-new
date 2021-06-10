@@ -1,8 +1,16 @@
 <template>
-  <div class="form-group" style="display: flex;">
-    <div class="login-code" @click="refreshCode">
+  <div
+    class="form-group"
+    style="display: flex;"
+  >
+    <div
+      class="login-code"
+      @click="refreshCode"
+    >
       <!--验证码组件-->
-      <Identify :identifyCode="identifyCode"></Identify>
+      <Identify
+        :identifyCode="identifyCode"
+      ></Identify>
     </div>
   </div>
 </template>
@@ -33,7 +41,6 @@ export default {
     randomNum(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
     },
-
     refreshCode() {
       this.identifyCode = "";
       this.makeCode(this.identifyCodes, 4);

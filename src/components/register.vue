@@ -1,7 +1,15 @@
 <template>
-<div id="register">
-  <v-col id="res">
-    <h1 style="margin-bottom: 30px">申请账号</h1>
+<div
+  id="register"
+>
+  <v-col
+    id="res"
+  >
+    <h1
+      style="margin-bottom: 30px"
+    >
+      申请账号
+    </h1>
     <v-text-field
       label="账号"
       prepend-icon="mdi-account-circle"
@@ -39,16 +47,25 @@
       color="indigo"
       style="margin-top: 20px"
       @click="register(username,password,repassword,nickname)"
-    >注册</v-btn>
+    >
+      注册
+    </v-btn>
   </v-col>
-  <v-dialog v-model="dialog" width="300">
+  <v-dialog
+    v-model="dialog"
+    width="300"
+  >
     <v-card>
-      <v-card-title class="headline grey lighten-2">
+      <v-card-title
+        class="headline grey lighten-2"
+      >
          注册成功！
       </v-card-title>
 
       <v-card-text>
-        <h3>恭喜您，注册成功，是否现在就用这个账号登录呢?</h3>
+        <h3>
+          恭喜您，注册成功，是否现在就用这个账号登录呢?
+        </h3>
       </v-card-text>
 
       <v-divider></v-divider>
@@ -122,7 +139,7 @@ export default {
             }else {
               this.$http({
                 method: 'post',
-                url: '/api/search-engine/user/register',
+                url: 'http://211.87.232.198:8081/search-engine/user/register',
                 data: qs.stringify({
                   username: username,
                   password: password,
@@ -145,7 +162,7 @@ export default {
       this.content = this.seconds+'s后跳转界面'
       this.$http({
         method: 'post',
-        url: '/api/search-engine/user/login',
+        url: 'http://211.87.232.198:8081/search-engine/user/login',
         data: qs.stringify({
           username: username,
           password: password

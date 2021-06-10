@@ -1,6 +1,9 @@
 <template>
   <div>
-    <v-navigation-drawer permanent id="navigation">
+    <v-navigation-drawer
+      permanent
+      id="navigation"
+    >
       <v-card
         class="mx-auto"
         width="300"
@@ -11,8 +14,12 @@
             :value="true"
             disabled
           >
-            <template v-slot:activator>
-              <v-list-item-title>用户</v-list-item-title>
+            <template
+              v-slot:activator
+            >
+              <v-list-item-title>
+                用户
+              </v-list-item-title>
             </template>
 
             <v-list-group
@@ -21,9 +28,13 @@
               :value="true"
               disabled
             >
-              <template v-slot:activator>
+              <template
+                v-slot:activator
+              >
                 <v-list-item-content>
-                  <v-list-item-title>账号</v-list-item-title>
+                  <v-list-item-title>
+                    账号
+                  </v-list-item-title>
                 </v-list-item-content>
               </template>
 
@@ -33,10 +44,14 @@
                 link
                 @click="keydown(title)"
               >
-                <v-list-item-title v-text="title"></v-list-item-title>
+                <v-list-item-title
+                  v-text="title"
+                ></v-list-item-title>
 
                 <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
+                  <v-icon
+                    v-text="icon"
+                  ></v-icon>
                 </v-list-item-icon>
               </v-list-item>
             </v-list-group>
@@ -47,9 +62,13 @@
               :value="true"
               disabled
             >
-              <template v-slot:activator>
+              <template
+                v-slot:activator
+              >
                 <v-list-item-content>
-                  <v-list-item-title>钱包</v-list-item-title>
+                  <v-list-item-title>
+                    钱包
+                  </v-list-item-title>
                 </v-list-item-content>
               </template>
 
@@ -59,10 +78,14 @@
                 link
                 @click="keydown(title)"
               >
-                <v-list-item-title v-text="title"></v-list-item-title>
+                <v-list-item-title
+                  v-text="title"
+                ></v-list-item-title>
 
                 <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
+                  <v-icon
+                    v-text="icon"
+                  ></v-icon>
                 </v-list-item-icon>
               </v-list-item>
             </v-list-group>
@@ -74,8 +97,12 @@
             :value="true"
             disabled
           >
-            <template v-slot:activator>
-              <v-list-item-title>账号资料</v-list-item-title>
+            <template
+              v-slot:activator
+            >
+              <v-list-item-title>
+                账号资料
+              </v-list-item-title>
             </template>
 
             <v-list-group
@@ -84,9 +111,13 @@
               :value="true"
               disabled
             >
-              <template v-slot:activator>
+              <template
+                v-slot:activator
+              >
                 <v-list-item-content>
-                  <v-list-item-title>文献</v-list-item-title>
+                  <v-list-item-title>
+                    文献
+                  </v-list-item-title>
                 </v-list-item-content>
               </template>
 
@@ -96,10 +127,14 @@
                 link
                 @click="keydown(title)"
               >
-                <v-list-item-title v-text="title"></v-list-item-title>
+                <v-list-item-title
+                  v-text="title"
+                ></v-list-item-title>
 
                 <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
+                  <v-icon
+                    v-text="icon"
+                  ></v-icon>
                 </v-list-item-icon>
               </v-list-item>
             </v-list-group>
