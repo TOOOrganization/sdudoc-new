@@ -3,20 +3,20 @@
     <v-app-bar
       flat
       light
-      app
-      v-show="!(path==='/login'||path==='/register'||path==='/search')"
-    >
-      <strong
-        style="font-size: 25px"
-        class="mx-lg-auto"
-      >
-        S D U D O C  检 索 系 统
-      </strong>
+      app>
+      <v-app-bar-nav-icon @click.stop="drawer = path==='/login' ? false : !drawer"></v-app-bar-nav-icon>
+      <div
+        style="font-size: 20px"
+        class="mx-auto">
+        SDUDOC - 山东大学数字古籍检索系统
+      </div>
     </v-app-bar>
+
     <v-navigation-drawer
-      permanent
-      app
-      v-show="!(path==='/login'||path==='/register'||path==='/search')">
+      left
+      absolute
+      temporary
+      v-model="drawer">
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
@@ -101,8 +101,15 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <v-main v-show="!(path==='/login'||path==='/register'||path==='/search')"><router-view v-if="isRouterAlive"/></v-main>
-    <div v-show="path==='/login'||path==='/register'||path==='/search'"><router-view/></div>
+
+    <v-main v-show="!(path==='/login'||path==='/register'||path==='/search')">
+      <transition name="router_view_fade" mode="out-in">
+        <router-view v-if="isRouterAlive"/>
+      </transition>
+    </v-main>
+    <div v-show="path==='/login'||path==='/register'||path==='/search'">
+      <router-view/>
+    </div>
   </v-app>
 </template>
 
@@ -124,7 +131,8 @@ export default {
       path: '',
       files: [],
       image: 'https://cdn.vuetifyjs.com/images/john.png',
-      nickname: store.state.JSON_user ? store.state.JSON_user.nickname : null
+      nickname: store.state.JSON_user ? store.state.JSON_user.nickname : null,
+      drawer: false
     }
   },
   mounted() {
@@ -178,4 +186,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.router_view_fade-enter { opacity: 0; }
+.router_view_fade-enter-to { opacity: 1; }
+.router_view_fade-leave{ opacity: 1; }
+.router_view_fade-leave-to{ opacity: 0; }
+.router_view_fade-leave-active { transition: opacity 0.5s; }
+.router_view_fade-enter-active { transition: opacity 1s; }
 </style>

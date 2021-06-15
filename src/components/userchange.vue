@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="38%" style="margin-left: 10%">
+  <v-card max-width="38%" style="margin:auto;margin-top:8%">
     <v-card-text>
       <strong style="font-size: 20px">修改密码</strong>
 

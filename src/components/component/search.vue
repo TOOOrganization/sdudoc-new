@@ -154,10 +154,9 @@ export default {
             console.log(window.localStorage.getItem('search_value'))
             window.localStorage.setItem('search_mode',this.mode)
             console.log(window.localStorage.getItem('search_mode'))
-            let routeData = this.$router.resolve({
+            this.$router.push({
               name: "article"
             });
-            window.open(routeData.href, '_blank');
           } else {
             this.$message.error('缺乏响应数据');
             return false;

@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-table
-    height="500"
+    height="600"
     border
     :data="value"
-    style="width: 80%;margin: auto"
+    style="width: 80%;margin: auto;"
     >
       <el-table-column
       width="200"

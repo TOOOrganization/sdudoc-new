@@ -18,131 +18,101 @@
     <!--      </el-input>-->
     <!--    </div>-->
     <div
-      style="margin-left: 10%;width: 600px;height: 200px;"
+      style="margin-left: 10%;width:80%;height: 75px;margin-top: 90px"
     >
-      <v-col
-        style="text-align: center"
-      >
-        <v-radio-group
-          v-model="mode"
-          row
-          style="display: inline-block;"
-        >
-          <v-radio
-            value="articleAuthor"
-            label="作者"
-            light
-            on-icon="mdi-hand-right"
-          >
-          </v-radio>
-          <v-radio
-            value="content"
-            label="原文"
-            light
-            on-icon="mdi-hand-right"
-          >
-          </v-radio>
-          <v-radio
-            value="title"
-            label="标题"
-            light
-            on-icon="mdi-hand-right"
-          >
-          </v-radio>
-        </v-radio-group>
-        <v-radio-group
-          v-model="vague"
-          row
-          style="display: inline-block;"
-        >
-          <v-radio
-            value="vague"
-            label="模糊搜索"
-            light
-            on-icon="mdi-hand-right"
-          >
-          </v-radio>
-          <v-radio
-            value="precise"
-            label="精确搜索"
-            light
-            on-icon="mdi-hand-right"
-          ></v-radio>
-        </v-radio-group>
-      </v-col>
       <v-col>
         <v-text-field
           color="blue"
           outlined
+          dense
           label="输入要搜索的信息"
-          append-outer-icon="mdi-logout-variant"
-          @click:append-outer="search"
+          append-icon="mdi-magnify"
+          @click:append="search"
           v-model="keyword"
-        ></v-text-field>
+          style="margin-left:-138px;margin-top:-20px;width:65%"
+        >
+          <template v-slot:prepend>
+            <v-img :src="require('../assets/img/sdudoc.png')" width="120px" style="margin: auto" class="mb-4"></v-img>
+          </template>
+        </v-text-field>
       </v-col>
-
+      <v-col style="margin-top: -60px;margin-left:-130px;transform: scale(0.8, 0.8)">
+        <v-radio-group v-model="mode" row style="display: inline-block;">
+          <v-radio value="articleAuthor" label="作者" light on-icon="mdi-hand-right"></v-radio>
+          <v-radio value="content" label="原文" light on-icon="mdi-hand-right"></v-radio>
+          <v-radio value="title" label="标题" light on-icon="mdi-hand-right"></v-radio>
+        </v-radio-group>
+        <v-radio-group v-model="vague" row style="display: inline-block;">
+          <v-radio value="vague" label="模糊搜索" light on-icon="mdi-hand-right"></v-radio>
+          <v-radio value="precise" label="精确搜索" light on-icon="mdi-hand-right"></v-radio>
+        </v-radio-group>
+      </v-col>
     </div>
-    <v-card
-      style="left: 10%"
-      width="600"
-      max-height="250"
-      v-for="infos in value"
-      :key="infos._id"
-      @click="getSvg(infos)"
-      :disabled="dialog"
-      tile
-      outlined
-    >
-      <v-card-text>
-        <div
-          id="title"
-          v-if="$store.state.search_mode=='title'"
-          v-html="$options.filters.font_color(infos.title)"
-        ></div>
-        <div
-          id="title1"
-          v-if="$store.state.search_mode!='title'"
-          v-html="infos.title"
-        ></div>
-        <!--        <div id="title">{{infos.title}}</div>-->
-        <div
-          id="author"
-        >
-          {{infos.articleAuthor}}
-        </div>
-        <div
-          id="xiangxi"
-          class="text--primary"
-          v-if="$store.state.search_mode=='content'"
-          v-html="$options.filters.ellipsis(infos.content)"
-        >
-        </div>
-        <div
-          id="xiangxi1"
-          class="text--primary"
-          v-if="$store.state.search_mode!='content'"
-          v-html="$options.filters.ellipsis1(infos.content)"
-        >
-        </div>
-        <div
-          id="dbn"
-          style="color: blue"
-        >
-          {{infos.dynasty}}&#12288&#12288&#12288{{infos.bookname}}
-        </div>
-      </v-card-text>
-    </v-card>
+    <div style="border-bottom: 1px solid lightgray;margin-left: 2%;width:96%" class="mb-4"></div>
+    <div style="height:500px;overflow-y: scroll;">
+      <v-card
+        style="left: 10%;border:none;"
+        width="600"
+        max-height="250"
+        v-for="infos in value"
+        :key="infos._id"
+        @click="getSvg(infos)"
+        :disabled="dialog"
+        tile
+        outlined
+      >
+        <v-card-text>
+          <div
+            id="title"
+            v-if="$store.state.search_mode=='title'"
+            v-html="$options.filters.font_color(infos.title)"
+          ></div>
+          <div
+            id="title1"
+            v-if="$store.state.search_mode!='title'"
+            v-html="infos.title"
+          ></div>
+          <!--        <div id="title">{{infos.title}}</div>-->
+          <div
+            id="author"
+          >
+            {{infos.articleAuthor}}
+          </div>
+          <div
+            id="xiangxi"
+            class="text--primary"
+            v-if="$store.state.search_mode=='content'"
+            v-html="$options.filters.ellipsis(infos.content)"
+          >
+          </div>
+          <div
+            id="xiangxi1"
+            class="text--primary"
+            v-if="$store.state.search_mode!='content'"
+            v-html="$options.filters.ellipsis1(infos.content)"
+          >
+          </div>
+          <div
+            id="dbn"
+            style="color: blue"
+          >
+            {{infos.dynasty}}&#12288&#12288&#12288{{infos.bookname}}
+          </div>
+        </v-card-text>
+      </v-card>
+      <div
+        style="text-align: center;margin-top: 20px"
+      >
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          @current-change="pageChange"
+          :page-size="pageSize"
+          :total="totalusers" />
+      </div>
+    </div>
     <!-- 分页 -->
-    <div
-      style="text-align: center;margin-top: 20px"
-    >
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        @current-change="pageChange"
-        :page-size="pageSize"
-                     :total="totalusers" />
-    </div>
+
     <v-dialog
       v-model="dialog"
       width="1000">

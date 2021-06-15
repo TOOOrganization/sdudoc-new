@@ -49,9 +49,43 @@
 <template>
   <div class="search">
     <v-col>
-      <v-img :src="require('../assets/img/sdudoc.png')" width="75%" style="margin: auto"></v-img>
+      <v-img :src="require('../assets/img/sdudoc.png')" width="25%" style="margin: auto" class="mb-4"></v-img>
     </v-col>
     <v-col style="text-align: center">
+      <!--      <el-input-->
+      <!--        placeholder="请输入内容"-->
+      <!--        v-model="keyword"-->
+      <!--        style="width: 50%;margin: auto;height: 100%"-->
+      <!--        color="blue"-->
+      <!--      >-->
+      <!--        <template slot="append">搜索</template>-->
+      <!--      </el-input>-->
+      <!--      <template slot="paceholder">-->
+      <!--        <div><p style="color: blue;font-size: 120%">{{modes(mode)}}</p></div>-->
+      <!--      </template>-->
+      <v-text-field
+        v-model="keyword"
+        style="width: 40%"
+        class="mx-auto mb-0"
+        color="blue"
+        outlined
+      >
+        <template v-slot:label>
+          <div><p style="color: blue;font-size: 120%">{{modes(mode)}}</p></div>
+        </template>
+        <template v-slot:append>
+          <v-icon
+            color="primary"
+            light
+            style="vertical-align: top"
+            @click="search"
+          >
+            mdi-magnify
+          </v-icon>
+        </template>
+      </v-text-field>
+    </v-col>
+    <v-col style="text-align: center; margin-top:-2%">
       <v-radio-group
         v-model="mode"
         row
@@ -102,40 +136,7 @@
 
     </v-col>
 
-    <v-col style="text-align: center">
-      <!--      <el-input-->
-      <!--        placeholder="请输入内容"-->
-      <!--        v-model="keyword"-->
-      <!--        style="width: 50%;margin: auto;height: 100%"-->
-      <!--        color="blue"-->
-      <!--      >-->
-      <!--        <template slot="append">搜索</template>-->
-      <!--      </el-input>-->
-      <!--      <template slot="paceholder">-->
-      <!--        <div><p style="color: blue;font-size: 120%">{{modes(mode)}}</p></div>-->
-      <!--      </template>-->
-      <v-text-field
-        prepend-icon="mdi-folder-search-outline"
-        v-model="keyword"
-        style="width: 40%;margin: auto;"
-        color="blue"
-        outlined
-      >
-        <template v-slot:label>
-          <div><p style="color: blue;font-size: 120%">{{modes(mode)}}</p></div>
-        </template>
-        <template slot="append-outer">
-          <v-btn
-            color="primary"
-            light
-            style="vertical-align: top"
-            @click="search"
-          >
-            搜索
-          </v-btn>
-        </template>
-      </v-text-field>
-    </v-col>
+
     <v-col style="text-align: center">
 
     </v-col>
@@ -222,10 +223,9 @@ export default {
             window.localStorage.setItem('search_keyword',this.keyword)
             window.localStorage.setItem('search_value',JSON.stringify(res.data.results))
             window.localStorage.setItem('search_mode',this.mode)
-            let routeData = this.$router.resolve({
+            this.$router.push({
               name: "search"
             });
-            window.open(routeData.href, '_blank');
             store.state.search_state = false
 
           }else {
