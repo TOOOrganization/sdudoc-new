@@ -139,7 +139,7 @@ export default {
     search(){
       this.$http({
         method: 'post',
-        url: '/api/search-engine/solr/query',
+        url: 'http://211.87.232.198:8081/search-engine/solr/query',
         data: qs.stringify({
           corename: "dms_article",
           field: this.mode,

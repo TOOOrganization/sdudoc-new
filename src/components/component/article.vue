@@ -378,7 +378,7 @@ export default {
       this.detail = value
       this.$http({
         method: 'post',
-        url: '/api/search-engine/solr/getSVG',
+        url: 'http://211.87.232.198:8081/search-engine/solr/getSVG',
         data: qs.stringify({
           aid: this.detail._id,
           keyword: store.state.search_keyword,

@@ -90,7 +90,7 @@ export default {
             }else {
               this.$http({
                 method: 'post',
-                url: '/api/search-engine/user/login',
+                url: 'http://211.87.232.198:8081/search-engine/user/login',
                 data: qs.stringify({
                   username: username,
                   password: password
